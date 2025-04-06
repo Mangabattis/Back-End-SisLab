@@ -18,11 +18,13 @@ public class Laboratorio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-    private boolean disponivel;
+    private String name;
+    private Integer capacity;
+    private boolean available;
 
-    public Laboratorio(String nome, boolean disponivel){
-        this.nome = nome;
-        this.disponivel = disponivel;
+    public Laboratorio(String name, boolean available, Integer capacity){
+        this.name = name;
+        this.available = available;
+        this.capacity = capacity;
     }
 }

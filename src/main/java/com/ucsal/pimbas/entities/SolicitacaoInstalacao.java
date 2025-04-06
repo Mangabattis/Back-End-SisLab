@@ -1,6 +1,7 @@
 package com.ucsal.pimbas.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.ucsal.pimbas.entities.enums.StatusSolicitacao;
 
@@ -11,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,30 +28,28 @@ public class SolicitacaoInstalacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "professor_id")
-    private Professor professor;
+    private LocalDate dataUso;
 
-    @ManyToOne
-    @JoinColumn(name = "software_id")
-    private Software software;
+    @Enumerated(EnumType.STRING)
+    private StatusSolicitacao status;
 
     @ManyToOne
     @JoinColumn(name = "laboratorio_id")
     private Laboratorio laboratorio;
 
-    private LocalDate dataSolicitacao;
-    private LocalDate dataUtilizacao;
+    @ManyToMany
+    @JoinTable(
+        name = "solicitacao_software_software",
+        joinColumns = @JoinColumn(name = "solicitacao_id"),
+        inverseJoinColumns = @JoinColumn(name = "software_id")
+    )
+    private List<Software> softwares;
 
-    @Enumerated(EnumType.STRING)
-    private StatusSolicitacao status;
-
-    public SolicitacaoInstalacao(Professor professor, Software software, Laboratorio laboratorio, LocalDate dataSolicitacao, LocalDate dataUtilizacao, StatusSolicitacao status){
-        this.professor = professor;
-        this.software = software;
-        this.laboratorio = laboratorio;
-        this.dataSolicitacao = dataSolicitacao;
-        this.dataUtilizacao = dataUtilizacao;
+    public SolicitacaoInstalacao(LocalDate dataUso, StatusSolicitacao status, Laboratorio laboratorio,  List<Software> softwares){
+        this.dataUso = dataUso;
         this.status = status;
+        this.laboratorio = laboratorio;
+        this.softwares = softwares;
     }
+
 }

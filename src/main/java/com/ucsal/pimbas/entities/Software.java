@@ -18,18 +18,18 @@ public class Software {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-    private String linkInstalacao;
-    private String versao;
-    private boolean softwareLivre; // true = Livre, false = Proprietário
+    private String name;
+    private String linkInstall;
+    private String version;
+    private boolean softwareFree; // true = Livre, false = Proprietário
 
-    private boolean disponivel; // Se o software pode ser instalado
+    private boolean available; // Se o software pode ser instalado
 
-    public Software(String nome, String linkInstalacao, String versao, boolean softwareLivre, boolean disponivel){
-        this.nome = nome;
-        this.linkInstalacao = linkInstalacao;
-        this.versao = versao;
-        this.softwareLivre = softwareLivre;
-        this.disponivel = disponivel;
+    public Software(String name, String linkInstall, String version, boolean softwareFree, boolean available){
+        this.name = name;
+        this.linkInstall = linkInstall;
+        this.version = version;
+        this.softwareFree = softwareFree;
+        this.available = available;
     }
 }

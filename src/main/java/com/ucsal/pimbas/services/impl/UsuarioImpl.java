@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.ucsal.pimbas.entities.Administrador;
 import com.ucsal.pimbas.entities.Professor;
 import com.ucsal.pimbas.entities.dtos.UsuarioDTO;
-import com.ucsal.pimbas.entities.enums.TipoUsuario;
 import com.ucsal.pimbas.repositories.AdministradorRepository;
 import com.ucsal.pimbas.repositories.ProfessorRepository;
 import com.ucsal.pimbas.repositories.interfaces.IUsuario;
