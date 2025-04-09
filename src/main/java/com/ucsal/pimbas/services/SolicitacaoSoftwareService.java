@@ -23,5 +23,9 @@ public class SolicitacaoSoftwareService {
     public List<SolicitacaoInstalacaoDTO> listarSolicitacoes(){
         return solicitacaoSoftware.listarSolicitacoes();
     }
+
+    public List<SolicitacaoInstalacaoDTO> listarPorProfessor(Long professorId){
+        return solicitacaoSoftware.listarPorProfessor(professorId);
+    }
     
 }

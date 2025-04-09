@@ -45,6 +45,10 @@ public class SolicitacaoInstalacao {
     )
     private List<Software> softwares;
 
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
+    private Professor professor;
+
     public SolicitacaoInstalacao(LocalDate dataUso, StatusSolicitacao status, Laboratorio laboratorio,  List<Software> softwares){
         this.dataUso = dataUso;
         this.status = status;

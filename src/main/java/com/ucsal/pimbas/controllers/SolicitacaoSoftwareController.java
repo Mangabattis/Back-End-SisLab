@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,8 +39,13 @@ public class SolicitacaoSoftwareController {
     }
     
 
-    @GetMapping("/listar")
+    @GetMapping("/listarTodos")
     public ResponseEntity<List<SolicitacaoInstalacaoDTO>> listarSolicitacoes(){
         return ResponseEntity.ok(solicitacaoService.listarSolicitacoes());
+    }
+
+    @GetMapping("/listar/professor/{id}")
+    public ResponseEntity<List<SolicitacaoInstalacaoDTO>> listarPorProfessor(@PathVariable Long idProfessor){
+        return ResponseEntity.ok(solicitacaoService.listarPorProfessor(idProfessor));
     }
 }

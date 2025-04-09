@@ -14,4 +14,5 @@ public class SolicitacaoInstalacaoDTO {
     private String status;
     private Long laboratorioId;
     private List<Long> softwareIds;
+    private Long professorId;
 }
