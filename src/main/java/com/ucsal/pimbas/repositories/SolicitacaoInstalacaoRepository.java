@@ -1,5 +1,6 @@
 package com.ucsal.pimbas.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +13,7 @@ public interface SolicitacaoInstalacaoRepository extends JpaRepository<Solicitac
     @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM SolicitacaoInstalacao s JOIN s.softwares sw WHERE s.laboratorio.id = :labId AND sw.id = :softwareId")
     boolean existsByLaboratorioAndSoftware(@Param("labId") Long labId, @Param("softwareId") Long softwareId);
 
-    Optional<SolicitacaoInstalacao> findByProfessorId(Long professorId);
+    List<SolicitacaoInstalacao> findByProfessorId(Long professorId);
+
 
 }

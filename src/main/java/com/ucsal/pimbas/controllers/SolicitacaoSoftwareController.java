@@ -44,7 +44,7 @@ public class SolicitacaoSoftwareController {
         return ResponseEntity.ok(solicitacaoService.listarSolicitacoes());
     }
 
-    @GetMapping("/listar/professor/{id}")
+    @GetMapping("/listar/professor/{idProfessor}")
     public ResponseEntity<List<SolicitacaoInstalacaoDTO>> listarPorProfessor(@PathVariable Long idProfessor){
         return ResponseEntity.ok(solicitacaoService.listarPorProfessor(idProfessor));
     }

@@ -62,33 +62,61 @@ public SolicitacaoInstalacaoDTO criarSolicitacao(SolicitacaoInstalacaoDTO dto) {
 }
 
 
-    @Override
-    public List<SolicitacaoInstalacaoDTO> listarSolicitacoes() {
-        return solicitacaoRepository.findAll().stream().map(solicitacao -> {
-            SolicitacaoInstalacaoDTO dto = new SolicitacaoInstalacaoDTO();
-            dto.setId(solicitacao.getId());
-            dto.setDataUso(solicitacao.getDataUso());
-            dto.setStatus(solicitacao.getStatus().name());
-            dto.setLaboratorioId(solicitacao.getLaboratorio().getId());
-            dto.setSoftwareIds(
-                solicitacao.getSoftwares().stream().map(Software::getId).toList()
-            );
-            return dto;
-        }).toList();
-    }
+@Override
+public List<SolicitacaoInstalacaoDTO> listarSolicitacoes() {
+    return solicitacaoRepository.findAll().stream().map(solicitacao -> {
+        SolicitacaoInstalacaoDTO dto = new SolicitacaoInstalacaoDTO();
+        dto.setId(solicitacao.getId());
+        dto.setDataUso(solicitacao.getDataUso());
+        dto.setStatus(solicitacao.getStatus().name());
 
-    @Override
-    public List<SolicitacaoInstalacaoDTO> listarPorProfessor(Long professorId) {
-        return solicitacaoRepository.findByProfessorId(professorId).stream().map(solicitacao -> {
-            SolicitacaoInstalacaoDTO dto = new SolicitacaoInstalacaoDTO();
-            dto.setId(solicitacao.getId());
-            dto.setDataUso(solicitacao.getDataUso());
-            dto.setStatus(solicitacao.getStatus().name());
-            dto.setLaboratorioId(solicitacao.getLaboratorio().getId());
-            dto.setSoftwareIds(
-                solicitacao.getSoftwares().stream().map(Software::getId).toList()
-            );
-            return dto;
-        }).toList();
-    }
+        dto.setLaboratorioId(solicitacao.getLaboratorio().getId());
+        dto.setLaboratorioNome(solicitacao.getLaboratorio().getName());
+
+        dto.setSoftwareIds(
+            solicitacao.getSoftwares().stream().map(Software::getId).toList()
+        );
+        dto.setSoftwareNomes(
+            solicitacao.getSoftwares().stream().map(Software::getName).toList()
+        );
+
+        dto.setSolicitadoPor(solicitacao.getProfessor().getNome());
+        dto.setProfessorId(solicitacao.getProfessor().getId()); //apesar que não vai aparecer o id do professor na tela, vou deixar aq caso dê alguma merda;
+
+        return dto;
+    }).toList();
+}
+
+
+@Override
+public List<SolicitacaoInstalacaoDTO> listarPorProfessor(Long professorId) {
+    return solicitacaoRepository.findByProfessorId(professorId).stream().map(solicitacao -> {
+        SolicitacaoInstalacaoDTO dto = new SolicitacaoInstalacaoDTO();
+
+        dto.setId(solicitacao.getId());
+        dto.setDataUso(solicitacao.getDataUso());
+        dto.setStatus(solicitacao.getStatus().name());
+
+        dto.setLaboratorioId(solicitacao.getLaboratorio().getId());
+        dto.setLaboratorioNome(solicitacao.getLaboratorio().getName());
+
+        dto.setSoftwareIds(
+            solicitacao.getSoftwares().stream()
+                .map(Software::getId)
+                .toList()
+        );
+
+        dto.setSoftwareNomes(
+            solicitacao.getSoftwares().stream()
+                .map(Software::getName)
+                .toList()
+        );
+
+        dto.setSolicitadoPor(solicitacao.getProfessor().getNome());
+        dto.setProfessorId(solicitacao.getProfessor().getId()); //apesar que não vai aparecer o id do professor na tela, vou deixar aq caso dê alguma merda;
+
+        return dto;
+    }).toList();
+}
+
 }

@@ -12,7 +12,13 @@ public class SolicitacaoInstalacaoDTO {
     private Long id;
     private LocalDate dataUso;
     private String status;
+
     private Long laboratorioId;
+    private String laboratorioNome;
+
     private List<Long> softwareIds;
+    private List<String> softwareNomes;
+
+    private String solicitadoPor;
     private Long professorId;
 }
