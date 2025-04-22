@@ -14,11 +14,11 @@ public class LaboratorioSeeder {
     CommandLineRunner initLaboratorios(LaboratorioRepository laboratorioRepository) {
         return args -> {
             if (laboratorioRepository.count() == 0) {
-                laboratorioRepository.save(new Laboratorio("Laboratório 101", true, 30));
-                laboratorioRepository.save(new Laboratorio("Laboratório 102", true, 25));
-                laboratorioRepository.save(new Laboratorio("Laboratório 103", true, 20));
-                laboratorioRepository.save(new Laboratorio("Laboratório 205", true, 40));
-                laboratorioRepository.save(new Laboratorio("Laboratório 301", false, 30));
+                laboratorioRepository.save(new Laboratorio("Laboratório 101", "Bloco A", 30, 30, "Laboratório principal", true));
+                laboratorioRepository.save(new Laboratorio("Laboratório 102", "Bloco B", 25, 25, "Laboratório secundário", true));
+                laboratorioRepository.save(new Laboratorio("Laboratório 103", "Bloco C", 20, 20, "Laboratório de redes", true));
+                laboratorioRepository.save(new Laboratorio("Laboratório 205", "Bloco D", 40, 40, "Laboratório de sistemas", true));
+                laboratorioRepository.save(new Laboratorio("Laboratório 301", "Bloco E", 30, 30, "Laboratório desativado", false));
             }
         };
     }
