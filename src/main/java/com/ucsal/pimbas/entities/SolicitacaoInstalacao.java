@@ -2,9 +2,7 @@ package com.ucsal.pimbas.entities;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import com.ucsal.pimbas.entities.enums.StatusSolicitacao;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,6 +27,7 @@ public class SolicitacaoInstalacao {
     private Long id;
 
     private LocalDate dataUso;
+    private String observacao;
 
     @Enumerated(EnumType.STRING)
     private StatusSolicitacao status;
@@ -49,11 +48,13 @@ public class SolicitacaoInstalacao {
     @JoinColumn(name = "professor_id")
     private Professor professor;
 
-    public SolicitacaoInstalacao(LocalDate dataUso, StatusSolicitacao status, Laboratorio laboratorio,  List<Software> softwares){
+    public SolicitacaoInstalacao(LocalDate dataUso, StatusSolicitacao status, 
+                               Laboratorio laboratorio, List<Software> softwares, 
+                               String observacao) {
         this.dataUso = dataUso;
         this.status = status;
         this.laboratorio = laboratorio;
         this.softwares = softwares;
+        this.observacao = observacao;
     }
-
 }
